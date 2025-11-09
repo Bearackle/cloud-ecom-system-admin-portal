@@ -22,6 +22,7 @@ const MyMenu = () => (
     <Menu.ResourceItem name="brands" keyboardShortcut="g>p" />
     <Menu.ResourceItem name="products" keyboardShortcut="g>p" />
     <Menu.ResourceItem name="variants" keyboardShortcut="g>p" />
+    <Menu.ResourceItem name="images" keyboardShortcut="g>p" />
   </Menu>
 );
 

@@ -60,6 +60,33 @@ const customDataProvider = {
 
   create: async (resource, params) => {
     console.log("Creating resource:", resource, "with params:", params);
+    if (params.data.file && params.data.file.rawFile) {
+      const formData = new FormData();
+      formData.append("file", params.data.file.rawFile);
+
+      // Nếu muốn gửi thêm các field khác, append ở đây
+      Object.keys(params.data).forEach((key) => {
+        if (key !== "file") {
+          formData.append(key, params.data[key]);
+        }
+      });
+
+      // Gửi request multipart/form-data
+      const response = await fetch(`${apiUrl}/${resource}`, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${await response.text()}`);
+      }
+
+      const json = await response.json();
+      return { data: json };
+    }
     const response = await httpClient(`${apiUrl}/${resource}`, {
       method: "POST",
       body: JSON.stringify(params.data),

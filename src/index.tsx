@@ -14,6 +14,7 @@ import category from "./categories";
 import brand from "./brands";
 import { queryClient } from "./queryClient";
 import variants from "./variants";
+import images from "./images";
 
 const container = document.getElementById("root") as HTMLElement;
 const root = createRoot(container);
@@ -32,6 +33,7 @@ root.render(
       <Resource name="categories" {...category} />
       <Resource name="products" {...products} />
       <Resource name="variants" {...variants} />
+      <Resource name="images" {...images} />
     </Admin>
   </React.StrictMode>
 );

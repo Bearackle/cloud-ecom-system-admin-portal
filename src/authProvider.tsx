@@ -35,7 +35,14 @@ const authProvider: AuthProvider = {
       ? Promise.resolve()
       : Promise.reject();
   },
-
+  checkError: (error) => {
+    const status = error.status;
+    if (status === 401 || status === 403) {
+      localStorage.removeItem("authToken");
+      return Promise.reject();
+    }
+    return Promise.resolve();
+  },
   getPermissions: () => Promise.resolve(),
 };
 
