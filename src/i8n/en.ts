@@ -154,7 +154,7 @@ const customEnglishMessages: TranslationMessages = {
       name: "Products |||| Products",
       fields: {
         category_id: "Category",
-        height_gte: "Min height",
+        height_gte: "Min height", 
         height_lte: "Max height",
         height: "Height",
         image: "Image",
