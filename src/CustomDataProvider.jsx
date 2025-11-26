@@ -1,6 +1,6 @@
 import { fetchUtils } from "react-admin";
 
-const apiUrl = "http://localhost:8303";
+const apiUrl = "https://dinhhuan.id.vn";
 
 const httpClient = (url, options = {}) => {
   const token = localStorage.getItem("authToken");
@@ -28,14 +28,9 @@ const customDataProvider = {
     const url = `${apiUrl}/${resource}?${fetchUtils.queryParameters(query)}`;
 
     const { json, headers } = await httpClient(url);
-
-    const total = headers.has("content-range")
-      ? parseInt(headers.get("content-range").split("/").pop(), 10)
-      : json.length;
-
     return {
-      data: json,
-      total,
+      data: json.data,
+      total: json.meta.totalElements,
     };
   },
   getArray: async (resource, params) => {
