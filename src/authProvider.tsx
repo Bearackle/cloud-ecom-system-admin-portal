@@ -10,7 +10,8 @@ const DEFAULT_IDENTITY = {
 // Authenticated by default
 const authProvider: AuthProvider = {
   login: async ({ username, password }) => {
-    const request = new Request("https://dinhhuan.id.vn/auth/login", {
+    const domain = import.meta.env.VITE_API_URL || "http://localhost:8303";
+    const request = new Request(`${domain}/auth/login`, {
       method: "POST",
       body: JSON.stringify({ email: username, password }),
       headers: new Headers({ "Content-Type": "application/json" }),

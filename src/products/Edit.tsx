@@ -39,50 +39,56 @@ const ProductTitle = () => {
   );
 };
 
-const ProductEdit = () => (
-  <Edit title={<ProductTitle />}>
-    <TabbedForm>
-      <TabbedForm.Tab
-        label="Hình ảnh"
-        sx={{ maxWidth: "40em", minHeight: 48 }}
-        iconPosition="start"
-        icon={<PhotoCameraIcon />}
-      >
-        <ArrayInput source="images" label="Product Images">
-          <SimpleFormIterator>
-            <TextInput
-              source="imgUrls"
-              label="Image URL"
-              validate={required()}
-            />
-          </SimpleFormIterator>
-        </ArrayInput>
-      </TabbedForm.Tab>
-      <TabbedForm.Tab
-        label="Chi tiết"
-        path="details"
-        sx={{ maxWidth: "40em", minHeight: 48 }}
-        iconPosition="start"
-        icon={<AspectRatioIcon />}
-      >
-        <ProductEditDetails />
-      </TabbedForm.Tab>
-      <TabbedForm.Tab
-        label="Mô tả"
-        path="description"
-        sx={{ maxWidth: "40em", minHeight: 48 }}
-        iconPosition="start"
-        icon={<EditNoteIcon />}
-      >
-        <RichTextInput source="description" label="" validate={req} />
-      </TabbedForm.Tab>
-      <TabbedForm.Tab label="Thuộc tính">
-        <ProductAttributes />
-      </TabbedForm.Tab>
-    </TabbedForm>
-  </Edit>
-);
-
+const ProductEdit = () => {
+  return (
+    <Edit title={<ProductTitle />}>
+      <TabbedForm>
+        <TabbedForm.Tab
+          label="Hình ảnh"
+          sx={{ maxWidth: "40em", minHeight: 48 }}
+          iconPosition="start"
+          icon={<PhotoCameraIcon />}
+        >
+          <ArrayInput source="images" label="Product Images">
+            <SimpleFormIterator>
+              <TextInput
+                source="id"
+                label="Image ID"
+                disabled // nếu bạn không muốn user sửa ID
+              />
+              <TextInput
+                source="imgUrl"
+                label="Image URL"
+                validate={required()}
+              />
+            </SimpleFormIterator>
+          </ArrayInput>
+        </TabbedForm.Tab>
+        <TabbedForm.Tab
+          label="Chi tiết"
+          path="details"
+          sx={{ maxWidth: "40em", minHeight: 48 }}
+          iconPosition="start"
+          icon={<AspectRatioIcon />}
+        >
+          <ProductEditDetails />
+        </TabbedForm.Tab>
+        <TabbedForm.Tab
+          label="Mô tả"
+          path="description"
+          sx={{ maxWidth: "40em", minHeight: 48 }}
+          iconPosition="start"
+          icon={<EditNoteIcon />}
+        >
+          <RichTextInput source="description" label="" validate={req} />
+        </TabbedForm.Tab>
+        <TabbedForm.Tab label="Thuộc tính">
+          <ProductAttributes />
+        </TabbedForm.Tab>
+      </TabbedForm>
+    </Edit>
+  );
+};
 const req = [required()];
 
 export default ProductEdit;

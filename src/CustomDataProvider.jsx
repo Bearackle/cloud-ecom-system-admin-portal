@@ -1,6 +1,6 @@
 import { fetchUtils } from "react-admin";
 
-const apiUrl = "https://dinhhuan.id.vn";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const httpClient = (url, options = {}) => {
   const token = localStorage.getItem("authToken");
